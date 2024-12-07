@@ -1,7 +1,12 @@
-import mongoose from "mongoose"
+import mongoose from "mongoose";
+import dotenv from "dotenv";
 
-mongoose.connect("mongodb+srv://alura:123@alura.dkjed.mongodb.net/alura-node");
+dotenv.config();
 
-let db = mongoose.connection;
+async function dbConnect() {
+  mongoose.set("strictQuery", true);
+  mongoose.connect(process.env.DB_CONNECTION_STRING);
+  return mongoose.connection;
+}
 
-export default db;
+export default dbConnect;
