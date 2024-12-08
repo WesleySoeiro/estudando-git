@@ -5,6 +5,7 @@ import manipulador404 from "./middlewares/manipulador404.js";
 import manipuladorDeErros from "./middlewares/manipuladorDeErros.js";
 
 const db = await dbConnect();
+const teste = "alterando main";
 
 db.on("error", console.log.bind(console, "Erro de conexão"));
 db.once("open", () => {
@@ -18,4 +19,4 @@ app.use(manipulador404);
 
 app.use(manipuladorDeErros);
 
-export default app; 
+export default app;
