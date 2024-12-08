@@ -13,6 +13,19 @@ const livroSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "autores",
     required: [true, "O ID do(a) autor(a) é obrigatório"],
+  },
+
+  editora: {
+    type: String,
+    lowercase: true,
+    required: [true, "O título do livro é obrigatório"],
+    unique: true,
+    trim: true,
+  },
+  autor: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "autores",
+    required: [true, "O ID do(a) autor(a) é obrigatório"],
     autopopulate: { select: "nome" },
   },
   editora: {
@@ -23,13 +36,16 @@ const livroSchema = new mongoose.Schema({
       values: ["sextante", "classicos", "teste"],
       message: "A editora {VALUE} não é uma editora permitida",
     },
+    trim: true,
   },
   preco: {
     type: Number,
     required: [true, "O preco do livro é obrigatório"],
+    min: [0, "O preco do livro não pode ser negativo"],
   },
   paginas: {
     type: Number,
+    required: [true, "O número de páginas do livro é obrigatório"],
     validate: {
       validator: (value) => value >= 10 && value <= 1000,
       message:
