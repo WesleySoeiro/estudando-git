@@ -18,4 +18,4 @@ app.use(manipulador404);
 
 app.use(manipuladorDeErros);
 
-export default app; 
+export default app;
