@@ -3,7 +3,7 @@ import NaoEncontrado from "../erros/404.js";
 
 async function paginar(req, res, next) {
   try {
-    let { limite = 3, pagina = 1, ordenacao = "_id:1" } = req.query;
+    let { limite = 2, pagina = 1, ordenacao = "_id:1" } = req.query;
 
     let [campoOrdenacao, ordem] = ordenacao.split(":");
 
